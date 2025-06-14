@@ -1,0 +1,136 @@
+% technologies.tex
+\section{Technologies Used}
+This section describes the key technologies used in the student registration system, outlining their purpose, application, and foundational structures (boilerplates and styling methods).
+
+\begin{description}
+    \item[HTML (HyperText Markup Language)] HTML is the standard markup language for creating the structure of web pages. It defines elements like forms, tables, and navigation bars using tags (e.g., \texttt{<form>}, \texttt{<table>}, \texttt{<nav>}). In this project, HTML is used to create the student registration form, student information table, and website structure with a navbar, landing page, and footer. Semantic tags (e.g., \texttt{<header>}, \texttt{<nav>}) and form validation attributes (e.g., \texttt{required}) ensure accessibility and functionality.
+
+    \subsection{HTML}
+    The HTML boilerplate is the standard structure for an HTML document, providing essential tags and metadata for web compatibility. Below is a basic HTML5 boilerplate used as the foundation for project files like the student registration form and website.
+
+    \lstset{language=HTML}
+    \begin{lstlisting}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Title</title>
+</head>
+<body>
+    <!-- Content goes here -->
+</body>
+</html>
+    \end{lstlisting}
+    Key elements include:
+    \begin{itemize}
+        \item \texttt{<!DOCTYPE html>}: Declares the document as HTML5.
+        \item \texttt{<html lang="en">}: Specifies the document language.
+        \item \texttt{<meta charset="UTF-8">}: Ensures proper character encoding.
+        \item \texttt{<meta name="viewport">}: Enables responsive design for mobile devices.
+        \item \texttt{<title>}: Sets the page title displayed in the browser.
+    \end{itemize}
+
+    \item[CSS (Cascading Style Sheets)] CSS styles and layouts HTML elements, controlling visual aspects like colors, fonts, and responsiveness. In this project, CSS enhances the registration form with gradient backgrounds and flexbox layouts, styles the student information table with borders and shadows, and designs the website with a fixed navbar and responsive media queries. Transitions and hover effects (e.g., \texttt{.btn:hover}) improve user interaction.
+
+    \subsection{CSS Inclusion Methods}
+    CSS can be included in HTML in three ways: inline, internal, and external. Each method is demonstrated below.
+
+    \subsubsection{Inline CSS}
+    Inline CSS applies styles directly to an HTML element using the \texttt{style} attribute. It is used for quick, element-specific styling but is less maintainable for large projects.
+    \lstset{language=HTML}
+    \begin{lstlisting}
+<div style="background-color: #f0f0f0; padding: 10px;">Inline styled div</div>
+    \end{lstlisting}
+
+    \subsubsection{Internal CSS}
+    Internal CSS is defined within a \texttt{<style>} tag in the HTML \texttt{<head>}. It is suitable for single-page styling, as used in the student registration form and website in this project.
+    \lstset{language=HTML}
+    \begin{lstlisting}
+<head>
+    <style>
+        .container {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">Internal styled div</div>
+</body>
+    \end{lstlisting}
+
+    \subsubsection{External CSS}
+    External CSS is stored in a separate \texttt{.css} file and linked using the \texttt{<link>} tag. It is ideal for applying consistent styles across multiple pages, promoting maintainability.
+    \lstset{language=HTML}
+    \begin{lstlisting}
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">External styled div</div>
+</body>
+    \end{lstlisting}
+    \lstset{language=CSS}
+    \begin{lstlisting}
+/* styles.css */
+.container {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+    \end{lstlisting}
+
+    \item[PHP (Hypertext Preprocessor)] PHP is a server-side scripting language for dynamic web content and database interaction. It processes form submissions and performs CRUD operations (Create, Read, Update, Delete). In this project, PHP scripts (e.g., \texttt{insert.php}, \texttt{display.php}) manage student data in a MySQL database using prepared statements for security and generate dynamic HTML for data display.
+
+    \subsection{PHP }
+    The PHP boilerplate provides a basic structure for a PHP script interacting with a MySQL database, as used in the project’s CRUD operations. It includes database connection setup and error handling.
+    \lstset{language=PHP}
+    \begin{lstlisting}
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "database_name";
+$conn = new mysqli($servername, $username, $password, $database);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// Perform database operations here
+$conn->close();
+?>
+    \end{lstlisting}
+    Key components include:
+    \begin{itemize}
+        \item \texttt{<?php ... ?>}: Delimits PHP code.
+        \item \texttt{mysqli}: Establishes a MySQL connection.
+        \item Error handling with \texttt{die()}: Terminates execution if the connection fails.
+        \item \texttt{\$conn->close()}: Closes the database connection to free resources.
+    \end{itemize}
+
+    \item[XML (eXtensible Markup Language)] XML stores and transports structured data with custom tags and schema validation (e.g., XSD). In this project, XML structures student registration data (\texttt{<studentRegistration>}) and employee records (\texttt{<employeeRecords>}), with an XSD schema validating employee data for attributes like phone number format and age range. It ensures data consistency and portability.
+
+    \subsection{XML }
+    The XML boilerplate defines the basic structure of an XML document, including the XML declaration and a root element. It may reference an XSD schema for validation, as used in the employee records.
+    \lstset{language=XML}
+    \begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <!-- Data elements go here -->
+</root>
+    \end{lstlisting}
+    With an XSD schema reference:
+    \lstset{language=XML}
+    \begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="schema.xsd">
+    <!-- Data elements go here -->
+</root>
+    \end{lstlisting}
+    Key components include:
+    \begin{itemize}
+        \item \texttt{<?xml version="1.0" encoding="UTF-8"?>}: Specifies the XML version and encoding.
+        \item \texttt{<root>}: The mandatory root element containing all data.
+        \item \texttt{xsi:noNamespaceSchemaLocation}: Links to an XSD schema for validation (optional).
+    \end{itemize}
+\end{description}
