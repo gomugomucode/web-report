@@ -8,12 +8,13 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
-\usepackage{graphicx} % For including images
+\usepackage{graphicx}
 \usepackage{float}
 \usepackage{tocloft}
 \usepackage{parskip}
+\usepackage{noto}
 
-% Configuring listings for code display (matching page 10)
+% Configuring listings for code display
 \lstset{
     basicstyle=\ttfamily\small,
     breaklines=true,
@@ -26,27 +27,31 @@
     tabsize=2,
 }
 
-% Configuring header and footer (empty)
-\pagestyle{empty}
-\fancyhf{}
+% Configure header and footer
+\pagestyle{fancy}
+\fancyhf{} % Clear header and footer
+\renewcommand{\headrulewidth}{0pt} % Remove header rule
+\cfoot{\thepage} % Optional: Add page number to footer
 
-% Setting up font
-\usepackage{noto}
-
-% Document title and author
-\title{BCA 3rd Semester Web Technology Lab Report}
-\author{ Anupam Baral}
-\date{ 2025}
-
-\clearpage
+% Remove date
+\date{} % Empty date to remove it
+\title{Project Report} % Optional: Define title if needed
+\author{Your Name} % Optional: Define author if needed
 
 \begin{document}
 
-\maketitle
+% Center the Table of Contents title and add 2-3 line gap
+{\centering \renewcommand{\contentsname}{ Table of Contents } \par}
+\vspace{3\baselineskip} 
 \tableofcontents
 \newpage
 
-\section{Introduction}
+% Include your technologies.tex file
+\input{technologies.tex}
+
+\clearpage
+
+\section{Practical}
 This lab report implements a student registration system using HTML, CSS, PHP, and MySQL, with XML for structured data. It includes a registration form, a student information table, CRUD operations, and XML examples for student and employee data. Output images are included to demonstrate the rendered results. All code listings are formatted consistently with a monospaced font, small size, and single-line spacing.
 
 \section{Student Registration Form}
@@ -424,6 +429,187 @@ The rendered output of the student information table is shown below.
     \caption{Student Information Table Output}
 \end{figure}
 
+\section{Design of website having a navbar, landing page and footer and styling with using necessary properties of html and css like lists(ul, ol , li), effects(hover )}
+
+\subsection{HTML Structure with Internal  CSS}
+
+\begin{lstlisting}[style=htmlstyle, caption=Complete Website Code]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+
+        /* Landing Page */
+        .landing {
+            padding-top: 80px;
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .landing-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .landing-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #ff5252;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .landing-content h1 {
+                font-size: 2rem;
+            }
+
+            .landing-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">MyWebsite</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <main class="landing" id="home">
+        <div class="landing-content">
+            <h1>Welcome to My Website</h1>
+            <p>This is a simple, clean landing page with a beautiful gradient background. We create amazing experiences and provide excellent services for our customers.</p>
+            <a href="#about" class="btn">Get Started</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+        <p>Email: info@mywebsite.com | Phone: (555) 123-4567</p>
+    </footer>
+</body>
+</html>
+\end{lstlisting}
+
+
+\subsection{Table Output}
+The rendered output of the website is shown below.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{13_screenshot.png}
+    \caption{My website}
+\end{figure}
+
 
 \section{XML Examples}
 This section includes XML structures for student registration and employee records, with an XSD for the employee XML.
@@ -452,7 +638,7 @@ Corrected XML for student registration data.
 </studentRegistration>
 \end{lstlisting}
 
-\subsection{Employee Records XML}
+\subsection{Employee Records XML with validations}
 XML for employee information with its schema.
 
 \lstset{language=XML}
